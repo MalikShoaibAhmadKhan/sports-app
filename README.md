@@ -72,50 +72,73 @@ A **modern, real-time sports news and updates platform** powered by cutting-edge
 
 ```mermaid
 flowchart TD
-  subgraph UI["🖥️ Frontend (React + TS)"]
+  subgraph UI["🖥️ Frontend"]
     A1[UI Components]
-    A2[State Mgmt (React Query)]
-    A3[Routing (React Router)]
-    A4[API Client (Axios)]
-    A5[Auth (JWT)]
-    A6[Styling (Tailwind)]
+    A2[State Management]
+    A3[React Router]
+    A4[API Client]
+    A5[Authentication]
+    A6[Styling]
   end
 
-  subgraph Server["🔧 Backend (Node.js + Express)"]
+  subgraph Server["🔧 Backend"]
     B1[Controllers]
     B2[Services]
     B3[Auth Service]
     B4[Cache Layer]
     B5[Validation]
-    B6[Models (Mongoose)]
+    B6[Data Models]
   end
 
-  subgraph DB["🗄️ Database (MongoDB + Redis)"]
+  subgraph DB["🗄️ Database"]
     C1[Collections]
     C2[Indexes]
-    C3[Cache (Redis)]
+    C3[Redis Cache]
     C4[Backups]
   end
 
-  subgraph External["🌍 External APIs"]
+  subgraph External["🌍 External Services"]
     D1[Sports API]
     D2[News API]
-    D3[CDN & Cloud Storage]
+    D3[CDN Storage]
   end
 
-  A1 --> A2 --> A3 --> A4 --> A5 --> A6
+  %% Frontend connections
+  A1 --> A2
+  A2 --> A3
+  A3 --> A4
+  A4 --> A5
+  A5 --> A6
+
+  %% Backend connections
   A4 --> B1
-  B1 --> B2 --> B3
+  B1 --> B2
+  B2 --> B3
   B2 --> B6
   B2 --> B4
   B3 --> B5
+
+  %% Database connections
   B6 --> C1
   C1 --> C2
   B4 --> C3
   C3 --> C4
+
+  %% External connections
   B2 --> D1
   B2 --> D2
   A1 --> D3
+
+  %% Styling
+  classDef frontend fill:#61dafb,stroke:#333,stroke-width:2px,color:white
+  classDef backend fill:#68a063,stroke:#333,stroke-width:2px,color:white
+  classDef database fill:#13aa52,stroke:#333,stroke-width:2px,color:white
+  classDef external fill:#ff6b6b,stroke:#333,stroke-width:2px,color:white
+
+  class UI frontend
+  class Server backend
+  class DB database
+  class External external
 ```
 
 > **Flow**: Frontend sends requests ➜ Backend processes via services ➜ Database fetch ➜ Data returned ➜ UI update
