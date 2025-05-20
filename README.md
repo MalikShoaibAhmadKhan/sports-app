@@ -130,15 +130,23 @@ flowchart TD
   A1 --> D3
 
   %% Styling
-  classDef frontend fill:#61dafb,stroke:#333,stroke-width:2px,color:white
-  classDef backend fill:#68a063,stroke:#333,stroke-width:2px,color:white
-  classDef database fill:#13aa52,stroke:#333,stroke-width:2px,color:white
-  classDef external fill:#ff6b6b,stroke:#333,stroke-width:2px,color:white
+  classDef frontend fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:white,font-weight:bold
+  classDef backend fill:#059669,stroke:#065F46,stroke-width:2px,color:white,font-weight:bold
+  classDef database fill:#DC2626,stroke:#991B1B,stroke-width:2px,color:white,font-weight:bold
+  classDef external fill:#7C3AED,stroke:#5B21B6,stroke-width:2px,color:white,font-weight:bold
+  classDef component fill:#60A5FA,stroke:#1E40AF,stroke-width:1px,color:white
+  classDef service fill:#34D399,stroke:#065F46,stroke-width:1px,color:white
+  classDef data fill:#F87171,stroke:#991B1B,stroke-width:1px,color:white
 
+  %% Apply styles
   class UI frontend
   class Server backend
   class DB database
   class External external
+  class A1,A2,A3,A4,A5,A6 component
+  class B1,B2,B3,B4,B5,B6 service
+  class C1,C2,C3,C4 data
+  class D1,D2,D3 external
 ```
 
 > **Flow**: Frontend sends requests ➜ Backend processes via services ➜ Database fetch ➜ Data returned ➜ UI update
