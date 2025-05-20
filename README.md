@@ -1,244 +1,238 @@
-# <img src="https://img.icons8.com/color/96/000000/soccer-ball.png" width="40"/> Sports Updates
+# 🏆 Sports Updates Portal
 
-<div align="center">
-  
-  <a href="https://github.com/MalikShoaibAhmadKhan/sports-app/stargazers"><img src="https://img.shields.io/github/stars/MalikShoaibAhmadKhan/sports-app?style=social"/></a>
-  <a href="https://github.com/MalikShoaibAhmadKhan/sports-app/network/members"><img src="https://img.shields.io/github/forks/MalikShoaibAhmadKhan/sports-app?style=social"/></a>
-  <a href="https://github.com/MalikShoaibAhmadKhan/sports-app/issues"><img src="https://img.shields.io/github/issues/MalikShoaibAhmadKhan/sports-app?color=yellow"/></a>
-  <a href="https://github.com/MalikShoaibAhmadKhan/sports-app/blob/main/LICENSE"><img src="https://img.shields.io/github/license/MalikShoaibAhmadKhan/sports-app?color=blue"/></a>
-  <br/>
-  <br/>
-  <b>A modern, real-time sports information platform built with cutting-edge technologies.</b>
-</div>
+A comprehensive sports news and updates platform built with modern web technologies.
 
----
+## 🛠️ Technologies Used
 
-> **Live scores, news, and stats for every sports fan.**
+### Frontend
+- **React.js** - UI library for building interactive user interfaces
+- **TypeScript** - Type-safe JavaScript for better development experience
+- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
+- **React Router** - Client-side routing
+- **Axios** - HTTP client for API requests
+- **React Query** - Data fetching and caching
+- **Framer Motion** - Animation library for smooth transitions
 
----
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web application framework
+- **TypeScript** - Type-safe JavaScript
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB object modeling
+- **JWT** - Authentication and authorization
+- **Bcrypt** - Password hashing
+- **Cors** - Cross-origin resource sharing
+- **Dotenv** - Environment variable management
 
-## 📖 Table of Contents
-- [Demo](#-demo)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-application-architecture)
-- [Getting Started](#-getting-started)
-- [Project Structure](#-project-structure)
-- [Configuration](#-configuration)
-- [Testing](#-testing)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Authors](#-authors)
-- [Acknowledgments](#-acknowledgments)
+### Development Tools
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
+- **Nodemon** - Development server with auto-reload
+- **Concurrently** - Run multiple commands concurrently
+- **TypeScript** - Static type checking
 
----
+## 📋 Features
 
-## 🎬 Demo
+### User Features
+- 📰 Real-time sports news updates
+- 🏆 Live match scores and statistics
+- 📊 Team and player statistics
+- 📱 Responsive design for all devices
+- 🔍 Advanced search functionality
+- 🔔 Personalized notifications
+- 👤 User authentication and profiles
+- 💬 Interactive comments and discussions
 
-> _"A picture is worth a thousand words!"_
+### Admin Features
+- 📝 Content management system
+- 📊 Analytics dashboard
+- 👥 User management
+- 🔧 System configuration
+- 📈 Performance monitoring
 
-![Demo GIF or Screenshot Placeholder](https://user-images.githubusercontent.com/placeholder/demo.gif)
-
----
-
-## 🌟 Features
-
-- ⚡ **Live Scores:** Real-time match updates, stats, and commentary
-- 📰 **Latest News:** Breaking news, trending stories, and personalized feeds
-- 👤 **User Profiles:** Favorite teams, notifications, and dashboards
-- 🎨 **Modern UI/UX:** Responsive, dark/light mode, smooth animations
-
----
-
-## 🛠️ Tech Stack
-
-**Frontend:**
-- ![React](https://img.shields.io/badge/React-18.2.0-blue.svg) React 18
-- ![TypeScript](https://img.shields.io/badge/TypeScript-5.0.0-blue.svg) TypeScript
-- ![Chakra UI](https://img.shields.io/badge/Chakra%20UI-2.8.2-purple.svg) Chakra UI
-- React Router, Socket.IO Client, Axios
-
-**Backend:**
-- ![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg) Node.js
-- Express, MongoDB, Socket.IO, JWT, TypeScript
-
----
-
-## 🏗️ Application Architecture
-
-> **A robust, scalable, and real-time 3-tier architecture.**
+## 🏗️ Architecture
 
 ```mermaid
-graph TD
-  subgraph Client Layer
-    A[React App / UI]
-    B[State Management]
-    C[Router]
-    D[Socket.IO Client]
-  end
+graph TB
+    subgraph Frontend["Frontend Layer (React + TypeScript)"]
+        UI[UI Components]
+        State[State Management]
+        API[API Client]
+        Auth[Authentication]
+        Router[Routing]
+    end
 
-  subgraph Server Layer
-    E[Express API]
-    F[JWT Auth]
-    G[Socket.IO Server]
-    H[Redis Cache]
-  end
+    subgraph Backend["Backend Layer (Node.js + Express)"]
+        Controllers[Controllers]
+        Services[Services]
+        Models[Data Models]
+        Middleware[Middleware]
+        AuthService[Auth Service]
+    end
 
-  subgraph Database Layer
-    I[(MongoDB)]
-    J[Collections]
-  end
+    subgraph Database["Database Layer (MongoDB)"]
+        Collections[(Collections)]
+        Indexes[(Indexes)]
+        Cache[(Cache)]
+    end
 
-  subgraph External Services
-    K[Sports API]
-    L[News API]
-    M[Cloud Storage]
-  end
+    %% Frontend connections
+    UI --> State
+    State --> API
+    API --> Auth
+    Auth --> Router
 
-  %% Connections
-  A-->|REST/HTTP|E
-  A-->|WebSocket|G
-  B-->|API|E
-  C-->|API|E
-  D-->|WebSocket|G
-  E-->|DB|I
-  E-->|Auth|F
-  G-->|Cache|H
-  F-->|DB|I
-  E-->|Sports Data|K
-  E-->|News|L
-  E-->|Media|M
-  I-->|Data|J
+    %% Backend connections
+    Controllers --> Services
+    Services --> Models
+    Services --> AuthService
+    Models --> Middleware
+
+    %% Layer connections
+    Frontend <--> Backend
+    Backend <--> Database
+
+    %% Styling
+    classDef frontend fill:#61dafb,stroke:#333,stroke-width:2px,color:white
+    classDef backend fill:#68a063,stroke:#333,stroke-width:2px,color:white
+    classDef database fill:#13aa52,stroke:#333,stroke-width:2px,color:white
+
+    class Frontend frontend
+    class Backend backend
+    class Database database
 ```
-
-**Legend:**
-- **Client Layer:** User interface, state, routing, and real-time client
-- **Server Layer:** API, authentication, real-time server, caching
-- **Database Layer:** MongoDB and collections (users, matches, news, stats)
-- **External Services:** Sports/News APIs, cloud storage
-
-**How Data Flows:**
-1. User interacts with the React UI (Client Layer)
-2. API requests and WebSocket events are sent to the Server Layer
-3. Server processes requests, authenticates, fetches or updates data in MongoDB, and may cache results
-4. Server fetches live data from external APIs as needed
-5. Real-time updates are pushed to the client via Socket.IO
-
----
 
 ## 🚀 Getting Started
 
-<details>
-<summary>Show setup instructions</summary>
-
 ### Prerequisites
 - Node.js (v18 or higher)
-- npm (v9 or higher)
-- MongoDB (v6.0 or higher)
+- MongoDB (v6 or higher)
+- npm or yarn package manager
 
 ### Installation
+
+1. Clone the repository:
 ```bash
-git clone https://github.com/MalikShoaibAhmadKhan/sports-app.git
-cd sports-app
+git clone https://github.com/yourusername/sports-updates.git
+cd sports-updates
 ```
 
+2. Install dependencies:
 ```bash
-# Backend
-cd server
+# Install root dependencies
 npm install
+
+# Install frontend dependencies
+cd frontend
+npm install
+
+# Install backend dependencies
+cd ../backend
+npm install
+```
+
+3. Set up environment variables:
+```bash
+# In the root directory
 cp .env.example .env
-# Edit .env as needed
-npm run dev
+
+# In the backend directory
+cd backend
+cp .env.example .env
 ```
 
-```bash
-# Frontend
-cd ../client
-npm install
-npm start
-```
-
-</details>
-
----
-
-## 📁 Project Structure
-
-```text
-sports-app/
-├── client/                 # Frontend React application
-│   ├── public/            # Static files
-│   └── src/               # Source files
-│       ├── components/    # Reusable components
-│       ├── pages/         # Page components
-│       ├── hooks/         # Custom hooks
-│       ├── services/      # API services
-│       └── utils/         # Utility functions
-│
-└── server/                # Backend Node.js application
-    ├── src/              # Source files
-    │   ├── controllers/  # Route controllers
-    │   ├── models/       # Database models
-    │   ├── routes/       # API routes
-    │   ├── services/     # Business logic
-    │   └── utils/        # Utility functions
-    └── tests/            # Test files
-```
-
----
-
-## 🔧 Configuration
-
-### Environment Variables
-
-#### Backend (.env)
+4. Configure environment variables:
 ```env
+# Root .env
+PORT=3000
+NODE_ENV=development
+
+# Backend .env
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/sports-updates
 JWT_SECRET=your_jwt_secret
-NODE_ENV=development
 ```
 
-#### Frontend (.env)
-```env
-REACT_APP_API_URL=http://localhost:5000
-REACT_APP_SOCKET_URL=http://localhost:5000
+### Development
+
+1. Start the development servers:
+```bash
+# From the root directory
+npm run dev
 ```
 
----
+This will start:
+- Frontend on http://localhost:3000
+- Backend on http://localhost:5000
+
+2. Access the application:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:5000/api
+- API Documentation: http://localhost:5000/api-docs
+
+## 📁 Project Structure
+
+```
+sports-updates/
+├── frontend/                 # React frontend application
+│   ├── public/              # Static files
+│   ├── src/                 # Source files
+│   │   ├── components/      # Reusable components
+│   │   ├── pages/          # Page components
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── services/       # API services
+│   │   ├── utils/          # Utility functions
+│   │   ├── types/          # TypeScript types
+│   │   └── styles/         # Global styles
+│   └── package.json        # Frontend dependencies
+│
+├── backend/                 # Node.js backend application
+│   ├── src/                # Source files
+│   │   ├── controllers/    # Route controllers
+│   │   ├── models/         # Database models
+│   │   ├── routes/         # API routes
+│   │   ├── services/       # Business logic
+│   │   ├── middleware/     # Custom middleware
+│   │   ├── utils/          # Utility functions
+│   │   └── types/          # TypeScript types
+│   └── package.json        # Backend dependencies
+│
+└── package.json            # Root package.json
+```
 
 ## 🧪 Testing
 
+### Frontend Tests
 ```bash
-# Run backend tests
-cd server
-npm test
-
-# Run frontend tests
-cd client
+cd frontend
 npm test
 ```
 
----
+### Backend Tests
+```bash
+cd backend
+npm test
+```
 
 ## 📦 Deployment
 
-### Backend
+### Frontend Deployment
+1. Build the frontend:
 ```bash
-cd server
+cd frontend
 npm run build
-npm start
 ```
 
-### Frontend
+2. Deploy to your hosting service (e.g., Vercel, Netlify)
+
+### Backend Deployment
+1. Build the backend:
 ```bash
-cd client
+cd backend
 npm run build
-# Deploy the build/ directory to your hosting service
 ```
 
----
+2. Deploy to your hosting service (e.g., Heroku, DigitalOcean)
 
 ## 🤝 Contributing
 
@@ -248,28 +242,16 @@ npm run build
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
----
-
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
 ## 👥 Authors
 
-- Malik Shoaib Ahmad Khan - [MalikShoaibAhmadKhan](https://github.com/MalikShoaibAhmadKhan)
-
----
+- Your Name - Initial work - [YourGitHub](https://github.com/yourusername)
 
 ## 🙏 Acknowledgments
 
-- [Unsplash](https://unsplash.com/) for the beautiful images
-- [Chakra UI](https://chakra-ui.com/) for the amazing component library
-- All contributors who have helped shape this project
-
----
-
-<div align="center">
-Made with ❤️ by Malik Shoaib Ahmad Khan
-</div> 
+- Thanks to all contributors
+- Inspired by various sports news platforms
+- Built with modern web technologies 
