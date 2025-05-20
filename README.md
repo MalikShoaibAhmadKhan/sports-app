@@ -1,9 +1,7 @@
 # <img src="https://img.icons8.com/color/96/000000/soccer-ball.png" width="40"/> Sports Updates
 
 <div align="center">
-  <img src="https://images.unsplash.com/photo-1508098682722-e99c643e0c76?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Sports Banner" style="border-radius: 12px; max-width: 100%;"/>
   
-  <br/>
   <a href="https://github.com/MalikShoaibAhmadKhan/sports-app/stargazers"><img src="https://img.shields.io/github/stars/MalikShoaibAhmadKhan/sports-app?style=social"/></a>
   <a href="https://github.com/MalikShoaibAhmadKhan/sports-app/network/members"><img src="https://img.shields.io/github/forks/MalikShoaibAhmadKhan/sports-app?style=social"/></a>
   <a href="https://github.com/MalikShoaibAhmadKhan/sports-app/issues"><img src="https://img.shields.io/github/issues/MalikShoaibAhmadKhan/sports-app?color=yellow"/></a>
@@ -73,69 +71,59 @@
 
 ```mermaid
 graph TD
-  subgraph CLIENT["🌐 Client Layer"]
-    A1["🖥️ React UI"]
-    A2["🔄 State Mgmt"]
-    A3["🧭 Router"]
-    A4["📡 Socket.IO Client"]
+  subgraph Client Layer
+    A[React App / UI]
+    B[State Management]
+    C[Router]
+    D[Socket.IO Client]
   end
 
-  subgraph SERVER["⚙️ Server Layer"]
-    B1["🛠️ Express API"]
-    B2["🔐 JWT Auth"]
-    B3["📡 Socket.IO Server"]
-    B4["⚡ Redis Cache"]
+  subgraph Server Layer
+    E[Express API]
+    F[JWT Auth]
+    G[Socket.IO Server]
+    H[Redis Cache]
   end
 
-  subgraph DB["💾 Database Layer"]
-    C1[("🍃 MongoDB")]
-    C2["📂 Collections"]
+  subgraph Database Layer
+    I[(MongoDB)]
+    J[Collections]
   end
 
-  subgraph EXT["🌍 External Services"]
-    D1["⚽ Sports API"]
-    D2["📰 News API"]
-    D3["☁️ Cloud Storage"]
+  subgraph External Services
+    K[Sports API]
+    L[News API]
+    M[Cloud Storage]
   end
 
   %% Connections
-  A1-->|REST/HTTP|B1
-  A1-->|WebSocket|B3
-  A2-->|API|B1
-  A3-->|API|B1
-  A4-->|WebSocket|B3
-  B1-->|DB|C1
-  B1-->|Auth|B2
-  B3-->|Cache|B4
-  B2-->|DB|C1
-  B1-->|Sports Data|D1
-  B1-->|News|D2
-  B1-->|Media|D3
-  C1-->|Data|C2
-
-  %% Styling
-  classDef client fill:#f9f,stroke:#333,stroke-width:2px
-  classDef server fill:#bbf,stroke:#333,stroke-width:2px
-  classDef db fill:#dfd,stroke:#333,stroke-width:2px
-  classDef ext fill:#fdd,stroke:#333,stroke-width:2px
-  class CLIENT client
-  class SERVER server
-  class DB db
-  class EXT ext
+  A-->|REST/HTTP|E
+  A-->|WebSocket|G
+  B-->|API|E
+  C-->|API|E
+  D-->|WebSocket|G
+  E-->|DB|I
+  E-->|Auth|F
+  G-->|Cache|H
+  F-->|DB|I
+  E-->|Sports Data|K
+  E-->|News|L
+  E-->|Media|M
+  I-->|Data|J
 ```
 
-#### 🗺️ Legend
+**Legend:**
 - **Client Layer:** User interface, state, routing, and real-time client
 - **Server Layer:** API, authentication, real-time server, caching
 - **Database Layer:** MongoDB and collections (users, matches, news, stats)
 - **External Services:** Sports/News APIs, cloud storage
 
-#### 🔄 How Data Flows
-1. **User** interacts with the React UI (Client Layer)
-2. **API requests** and **WebSocket events** are sent to the Server Layer
-3. **Server** processes requests, authenticates, fetches or updates data in MongoDB, and may cache results
-4. **Server** fetches live data from external APIs as needed
-5. **Real-time updates** are pushed to the client via Socket.IO
+**How Data Flows:**
+1. User interacts with the React UI (Client Layer)
+2. API requests and WebSocket events are sent to the Server Layer
+3. Server processes requests, authenticates, fetches or updates data in MongoDB, and may cache results
+4. Server fetches live data from external APIs as needed
+5. Real-time updates are pushed to the client via Socket.IO
 
 ---
 
