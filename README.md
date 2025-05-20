@@ -73,34 +73,34 @@ A **modern, real-time sports news and updates platform** powered by cutting-edge
 ```mermaid
 flowchart TD
   subgraph UI["🖥️ Frontend"]
-    A1[UI Components]
-    A2[State Management]
-    A3[React Router]
-    A4[API Client]
-    A5[Authentication]
-    A6[Styling]
+    A1[🎨 UI Components]
+    A2[🔄 State Management]
+    A3[🛣️ React Router]
+    A4[📡 API Client]
+    A5[🔐 Authentication]
+    A6[💅 Styling]
   end
 
   subgraph Server["🔧 Backend"]
-    B1[Controllers]
-    B2[Services]
-    B3[Auth Service]
-    B4[Cache Layer]
-    B5[Validation]
-    B6[Data Models]
+    B1[🎮 Controllers]
+    B2[⚙️ Services]
+    B3[🔒 Auth Service]
+    B4[💾 Cache Layer]
+    B5[✅ Validation]
+    B6[📊 Data Models]
   end
 
   subgraph DB["🗄️ Database"]
-    C1[Collections]
-    C2[Indexes]
-    C3[Redis Cache]
-    C4[Backups]
+    C1[📚 Collections]
+    C2[🔍 Indexes]
+    C3[⚡ Redis Cache]
+    C4[💿 Backups]
   end
 
   subgraph External["🌍 External Services"]
-    D1[Sports API]
-    D2[News API]
-    D3[CDN Storage]
+    D1[🏆 Sports API]
+    D2[📰 News API]
+    D3[☁️ CDN Storage]
   end
 
   %% Frontend connections
