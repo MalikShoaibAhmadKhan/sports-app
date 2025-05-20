@@ -54,26 +54,46 @@ A comprehensive sports news and updates platform built with modern web technolog
 
 ```mermaid
 graph TB
+    %% Frontend Layer
     subgraph Frontend["Frontend Layer (React + TypeScript)"]
+        direction TB
         UI[UI Components]
         State[State Management]
         API[API Client]
         Auth[Authentication]
         Router[Routing]
+        Style[Styling]
+        Utils[Utilities]
     end
 
+    %% Backend Layer
     subgraph Backend["Backend Layer (Node.js + Express)"]
+        direction TB
         Controllers[Controllers]
         Services[Services]
         Models[Data Models]
         Middleware[Middleware]
         AuthService[Auth Service]
+        Cache[Cache Service]
+        Validation[Validation]
     end
 
+    %% Database Layer
     subgraph Database["Database Layer (MongoDB)"]
+        direction TB
         Collections[(Collections)]
         Indexes[(Indexes)]
         Cache[(Cache)]
+        Backup[(Backup)]
+    end
+
+    %% External Services
+    subgraph External["External Services"]
+        direction TB
+        SportsAPI[Sports API]
+        NewsAPI[News API]
+        Storage[Cloud Storage]
+        CDN[CDN]
     end
 
     %% Frontend connections
@@ -81,26 +101,96 @@ graph TB
     State --> API
     API --> Auth
     Auth --> Router
+    UI --> Style
+    UI --> Utils
+    Router --> API
 
     %% Backend connections
     Controllers --> Services
     Services --> Models
     Services --> AuthService
-    Models --> Middleware
+    Services --> Cache
+    Models --> Validation
+    Controllers --> Middleware
+    AuthService --> Validation
+
+    %% Database connections
+    Models --> Collections
+    Collections --> Indexes
+    Cache --> Backup
+
+    %% External connections
+    Services --> SportsAPI
+    Services --> NewsAPI
+    Services --> Storage
+    UI --> CDN
 
     %% Layer connections
     Frontend <--> Backend
     Backend <--> Database
+    Backend <--> External
 
     %% Styling
     classDef frontend fill:#61dafb,stroke:#333,stroke-width:2px,color:white
     classDef backend fill:#68a063,stroke:#333,stroke-width:2px,color:white
     classDef database fill:#13aa52,stroke:#333,stroke-width:2px,color:white
+    classDef external fill:#ff6b6b,stroke:#333,stroke-width:2px,color:white
+    classDef component fill:#4a90e2,stroke:#333,stroke-width:1px,color:white
+    classDef service fill:#f5a623,stroke:#333,stroke-width:1px,color:white
+    classDef data fill:#7ed321,stroke:#333,stroke-width:1px,color:white
 
+    %% Apply styles
     class Frontend frontend
     class Backend backend
     class Database database
+    class External external
+
+    %% Component styles
+    class UI,State,API,Auth,Router,Style,Utils component
+    class Controllers,Services,Middleware,AuthService,Cache,Validation service
+    class Collections,Indexes,Cache,Backup data
+    class SportsAPI,NewsAPI,Storage,CDN external
 ```
+
+### Architecture Components
+
+#### Frontend Layer
+- **UI Components**: Reusable React components for consistent user interface
+- **State Management**: Global state management using React Query
+- **API Client**: Axios-based HTTP client for API communication
+- **Authentication**: JWT-based authentication and authorization
+- **Routing**: Client-side routing with React Router
+- **Styling**: Tailwind CSS for responsive design
+- **Utilities**: Helper functions and custom hooks
+
+#### Backend Layer
+- **Controllers**: Request handlers and business logic
+- **Services**: Core business logic and external service integration
+- **Models**: MongoDB schema definitions and data models
+- **Middleware**: Request processing and validation
+- **Auth Service**: User authentication and authorization
+- **Cache Service**: Redis-based caching for performance
+- **Validation**: Request and data validation
+
+#### Database Layer
+- **Collections**: MongoDB collections for data storage
+- **Indexes**: Optimized database indexes
+- **Cache**: Redis cache for frequently accessed data
+- **Backup**: Automated database backups
+
+#### External Services
+- **Sports API**: Real-time sports data integration
+- **News API**: Sports news and updates
+- **Cloud Storage**: Media and file storage
+- **CDN**: Content delivery network for static assets
+
+### Data Flow
+1. User interactions trigger API requests through the Frontend Layer
+2. Requests are processed by the Backend Layer's Controllers
+3. Business logic is handled by Services
+4. Data is stored/retrieved from the Database Layer
+5. External services provide additional data and functionality
+6. Responses flow back through the layers to update the UI
 
 ## 🚀 Getting Started
 
