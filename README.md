@@ -71,43 +71,82 @@ A **modern, real-time sports news and updates platform** powered by cutting-edge
 ## 🏗️ System Architecture
 
 ```mermaid
-graph TB
-    subgraph "Client Tier"
-        C[React Frontend]
-        C1[User Interface]
-        C2[State Management]
-        C3[API Integration]
-    end
+flowchart TD
+  subgraph UI["🖥️ Frontend"]
+    A1[🎨 UI Components]
+    A2[🔄 State Management]
+    A3[🛣️ React Router]
+    A4[📡 API Client]
+    A5[🔐 Authentication]
+    A6[💅 Styling]
+  end
 
-    subgraph "Server Tier"
-        S[Node.js Backend]
-        S1[Express API]
-        S2[Socket.IO]
-        S3[Authentication]
-    end
+  subgraph Server["🔧 Backend"]
+    B1[🎮 Controllers]
+    B2[⚙️ Services]
+    B3[🔒 Auth Service]
+    B4[💾 Cache Layer]
+    B5[✅ Validation]
+    B6[📊 Data Models]
+  end
 
-    subgraph "Data Tier"
-        D[MongoDB]
-        D1[User Data]
-        D2[Sports Data]
-        D3[Analytics]
-    end
+  subgraph DB["🗄️ Database"]
+    C1[📚 Collections]
+    C2[🔍 Indexes]
+    C3[⚡ Redis Cache]
+    C4[💿 Backups]
+  end
 
-    C <--> S
-    S <--> D
-    C1 --> C2
-    C2 --> C3
-    S1 --> S2
-    S2 --> S3
-    D1 --> D2
-    D2 --> D3
+  subgraph External["🌍 External Services"]
+    D1[🏆 Sports API]
+    D2[📰 News API]
+    D3[☁️ CDN Storage]
+  end
 
-    classDef client fill:#f9f,stroke:#333,stroke-width:2px
-    classDef server fill:#bbf,stroke:#333,stroke-width:2px
-    classDef data fill:#bfb,stroke:#333,stroke-width:2px
-    class C,C1,C2,C3 client
-    class S,S1,S2,S3 server
-    class D,D1,D2,D3 data
+  %% Frontend connections
+  A1 --> A2
+  A2 --> A3
+  A3 --> A4
+  A4 --> A5
+  A5 --> A6
+
+  %% Backend connections
+  A4 --> B1
+  B1 --> B2
+  B2 --> B3
+  B2 --> B6
+  B2 --> B4
+  B3 --> B5
+
+  %% Database connections
+  B6 --> C1
+  C1 --> C2
+  B4 --> C3
+  C3 --> C4
+
+  %% External connections
+  B2 --> D1
+  B2 --> D2
+  A1 --> D3
+
+  %% Styling
+  classDef frontend fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:white,font-weight:bold
+  classDef backend fill:#059669,stroke:#065F46,stroke-width:2px,color:white,font-weight:bold
+  classDef database fill:#DC2626,stroke:#991B1B,stroke-width:2px,color:white,font-weight:bold
+  classDef external fill:#7C3AED,stroke:#5B21B6,stroke-width:2px,color:white,font-weight:bold
+  classDef component fill:#60A5FA,stroke:#1E40AF,stroke-width:1px,color:white
+  classDef service fill:#34D399,stroke:#065F46,stroke-width:1px,color:white
+  classDef data fill:#F87171,stroke:#991B1B,stroke-width:1px,color:white
+
+  %% Apply styles
+  class UI frontend
+  class Server backend
+  class DB database
+  class External external
+  class A1,A2,A3,A4,A5,A6 component
+  class B1,B2,B3,B4,B5,B6 service
+  class C1,C2,C3,C4 data
+  class D1,D2,D3 external
 ```
 
 > **Flow**: Frontend sends requests ➜ Backend processes via services ➜ Database fetch ➜ Data returned ➜ UI update
