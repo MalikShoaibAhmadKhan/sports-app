@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: sports-updates-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password123
+    volumes:
+      - mongodb_data:/data/db
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=5002
+      - CLIENT_URL=http://localhost:3001
+      - SERVER_URL=http://localhost:5002
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/sports-updates?authSource=admin
+    depends_on:
+      - mongodb
+      - client
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+volumes:
+  mongodb_data:  
