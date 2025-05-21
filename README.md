@@ -153,41 +153,134 @@ flowchart TD
 
 ---
 
-## 🚀 Getting Started
+## 🏃‍♂️ Getting Started
 
-### ⚙️ Prerequisites
+### Prerequisites
+- Docker and Docker Compose
+- Node.js (v14 or higher)
+- npm or yarn
 
-* ✅ Docker and Docker Compose
-* ✅ Node.js v18+
-* ✅ MongoDB v6+
-* ✅ npm or yarn
+### Running with Docker (Recommended)
 
-### 📦 Installation
-
+1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/sports-updates.git
-cd sports-updates
+git clone https://github.com/MalikShoaibAhmadKhan/sports-app.git
+cd sports-app
+```
+
+2. Start all services using Docker Compose:
+```bash
+docker-compose up -d
+```
+
+This will start:
+- Frontend at http://localhost:3001
+- Backend at http://localhost:5002
+- MongoDB at mongodb://localhost:27017
+
+3. To view logs:
+```bash
+# View all logs
+docker-compose logs -f
+
+# View specific service logs
+docker-compose logs -f server
+docker-compose logs -f client
+docker-compose logs -f mongodb
+```
+
+4. To stop services:
+```bash
+docker-compose down
+```
+
+### Running Locally (Without Docker)
+
+1. Install dependencies:
+```bash
+# Install server dependencies
+cd server
+npm install
+
+# Install client dependencies
+cd ../client
 npm install
 ```
 
-#### Setup Frontend & Backend
-
+2. Set up environment variables:
 ```bash
-cd frontend && npm install
-cd ../backend && npm install
+# In server directory
+cp .env.example .env
 ```
 
-### 🔑 Environment Variables
-
+3. Start MongoDB:
 ```bash
-# .env (root)
-PORT=3000
+# If you have MongoDB installed locally
+mongod
 
-# .env (backend)
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/sports-updates
-JWT_SECRET=your_jwt_secret
+# Or use MongoDB Atlas connection string in .env file
 ```
+
+4. Start the services:
+```bash
+# Start server (in server directory)
+npm run dev
+
+# Start client (in client directory)
+npm start
+```
+
+## 📁 Project Structure
+
+```
+sports-updates/
+├── client/                 # Frontend React application
+│   ├── src/
+│   │   ├── components/    # React components
+│   │   ├── pages/        # Page components
+│   │   ├── services/     # API services
+│   │   └── utils/        # Utility functions
+│   ├── Dockerfile        # Frontend Docker configuration
+│   └── package.json
+├── server/                # Backend Node.js application
+│   ├── src/
+│   │   ├── controllers/  # Route controllers
+│   │   ├── models/       # Database models
+│   │   ├── routes/       # API routes
+│   │   └── services/     # Business logic
+│   ├── Dockerfile        # Backend Docker configuration
+│   └── package.json
+├── docker-compose.yml     # Docker services configuration
+└── README.md
+```
+
+## 🔧 Environment Variables
+
+### Server (.env)
+```
+PORT=5002
+MONGODB_URI=mongodb://admin:password123@mongodb:27017/sports-updates?authSource=admin
+CLIENT_URL=http://localhost:3001
+JWT_SECRET=your_jwt_secret_key_here
+```
+
+### Docker Environment
+The following services are configured in docker-compose.yml:
+- **MongoDB**: Database service
+  - Port: 27017
+  - Username: admin
+  - Password: password123
+  - Persistent volume: mongodb_data
+
+- **Server**: Backend service
+  - Port: 5002
+  - Environment: development
+  - Connected to MongoDB service
+
+- **Client**: Frontend service
+  - Port: 3001
+  - Environment: development
+  - Connected to Server service
 
 ---
 
